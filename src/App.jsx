@@ -7,7 +7,7 @@ function App() {
 
     return emojis.map((emoji, index) => ({
       id: index,
-      emoji,
+      emoji: emoji,
       revelada: false
     }))
   }
@@ -28,9 +28,17 @@ function App() {
   function handleClick(carta) {
     if (carta.revelada || carta2 !== null) return
 
-    const novasCartas = cartas.map(c =>
-      c.id === carta.id ? { ...c, revelada: true } : c
-    )
+    const novasCartas = cartas.map(c => {
+      if (c.id === carta.id) {
+        return {
+          id: c.id,
+          emoji: c.emoji,
+          revelada: true
+        }
+      } else {
+        return c
+      }
+    })
 
     setCartas(novasCartas)
 
@@ -56,11 +64,17 @@ function App() {
       } else {
         setTimeout(() => {
           setCartas(prev =>
-            prev.map(c =>
-              c.id === carta.id || c.id === carta1.id
-                ? { ...c, revelada: false }
-                : c
-            )
+            prev.map(c => {
+              if (c.id === carta.id || c.id === carta1.id) {
+                return {
+                  id: c.id,
+                  emoji: c.emoji,
+                  revelada: false
+                }
+              } else {
+                return c
+              }
+            })
           )
 
           setCarta1(null)
