@@ -16,7 +16,7 @@ function App() {
   const [carta1, setCarta1] = useState(null)
   const [carta2, setCarta2] = useState(null)
   const [pares, setPares] = useState(0)
-  const [vitorias, setVitorias] = useState(0) // contador
+  const [vitorias, setVitorias] = useState(0)
 
   function reiniciarJogo() {
     setCartas(gerarCartas())
@@ -48,7 +48,7 @@ function App() {
 
           setTimeout(() => {
             reiniciarJogo()
-          }, 2000) // espera 2s antes de resetar
+          }, 2000)
         }
 
         setCarta1(null)
@@ -93,7 +93,6 @@ function App() {
         ))}
       </div>
 
-      {/* contador embaixo */}
       <p style={{ marginTop: "20px" }}>
         Vitórias: {vitorias}
       </p>
